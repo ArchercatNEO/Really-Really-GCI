@@ -1,2 +1,2 @@
 # Really-Really-GCI
-http://archercatneo.github.io/really-really-gci
+http://archercatneo.github.io/Really-Really-GCI
