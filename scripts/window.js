@@ -3,7 +3,7 @@ function SwitchWindow(direction){
     console.log(player.position.join(","));
     
     //hide current window
-    document.getElementById(player.position.join(",")).style.display = "none";
+    //document.getElementById(player.position.join(",")).style.display = "none";
     
     //move position
     switch(direction){
@@ -26,7 +26,8 @@ function SwitchWindow(direction){
     }
 
     //show desired window
-    document.getElementById(player.position.join(",")).style.display = "block";
+    //document.getElementById(player.position.join(",")).style.display = "block";
+    $("#0,0" ).hide()
     
     //disable and make the arrows transparent
     for (let jquery of $(".arrow")){
