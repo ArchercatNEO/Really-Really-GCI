@@ -27,7 +27,7 @@ function SwitchWindow(direction){
 
     //show desired window
     //document.getElementById(player.position.join(",")).style.display = "block";
-    $("#0,0" ).hide()
+    $("#0_0" ).hide()
     
     //disable and make the arrows transparent
     for (let jquery of $(".arrow")){
