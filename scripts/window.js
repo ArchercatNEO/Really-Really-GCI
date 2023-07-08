@@ -1,12 +1,5 @@
-///<reference path="C:\Ernesto\GitHub_stuff\Really-Really-GCI\node_modules\jquery\dist\jquery.min.js" />
-
-import jqueryMin from "jquery/dist/jquery.min";
-
-console.log(jqueryMin);
-console.log($);
-
-
 function SwitchWindow(direction){
+    console.log($(".arrow"));
     console.log(player.position.join(","));
     
     //hide current window
