@@ -2,14 +2,14 @@
 <html>
     
     <head>
-        <link rel="stylesheet" href="styles.css"> 
-        <script>const player = {};</script>
+        <link rel="stylesheet" href="styles/classes.css"> 
+        <link rel="stylesheet" href="styles/positions.css"> 
         <script src="scripts/jquery.min.js"></script>
-        <script src="scripts/fields.js"></script>
         <script src="scripts/window.js"></script>
         <script src="scripts/main.js"></script>
         <script>
             $(document).ready(() => {
+                
                 init();
                 setInterval(tick, 1000/60) //60fps
             })
@@ -24,12 +24,30 @@
             <button class="arrow" id="down" onclick='SwitchWindow("down")'>↓</button>
             <button class="arrow" id="right" onclick='SwitchWindow("right")'>→</button>
         </div>
-        <div class="window" id="0_0">
-        <p> Hello world</p>
-        <div class="upgradeBox">
-            <p>Grass Upgrades</p>
+        <div class="window" id="GrassField">
+            <canvas class="grassField"></canvas>
+            <div class="upgradeBox" id="GrassUpgrades">
+                <p class="grass">Grass Upgrades</p>
+                <div class="upgradeImages grassbg" id="GrassImages">
+
+                </div>
+            </div>
         </div>
-    </div>
+        <div class="window" id="Achievements">
+
+        </div>
+        <div class="window" id="Settings">
+
+        </div>
+        <div class="window" id="City">
+
+        </div>
+        <div class="window" id="Time">
+
+        </div>
+        <div class="window" id="Automation">
+
+        </div>
     </body>
 
 </html>

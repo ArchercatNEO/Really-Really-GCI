@@ -1,42 +1,51 @@
-function SwitchWindow(direction){
-    console.log($(".arrow"));
-    console.log(player.position.join(","));
+let windows;
+
+function SwitchWindow(direction){  
+
+    const StringToPos = {
+        up:  [0, -1],
+        down:  [0, 1],
+        left:  [-1, 0],
+        right:  [1, 0],
+        none: [0, 0]
+    }
     
     //hide current window
-    //document.getElementById(player.position.join(",")).style.display = "none";
+    windows[player.position[1]][player.position[0]].hide();
     
     //move position
-    switch(direction){
-        
-        case "up":
-            player.position[1] -= 1;
-            break;
-        
-        case "down":
-            player.position[1] += 1;
-            break;
-
-        case "left":
-            player.position[0] -= 1;
-            break;
-            
-        case "right":
-            player.position[0] += 1;
-            break;
-    }
+    player.position[0] += StringToPos[direction][0];
+    player.position[1] += StringToPos[direction][1];
 
     //show desired window
-    //document.getElementById(player.position.join(",")).style.display = "block";
-    $("#0_0" ).hide()
+    windows[player.position[1]][player.position[0]].show();
+
     
     //disable and make the arrows transparent
-    for (let jquery of $(".arrow")){
-        //figure out which arrows should be enabled
-        const availible = !windows[player.position[1]][player.position[0]].arrows.includes(jquery.id);
-        console.log(availible);
-        console.log(jquery);
+    for (const jquery of $(".arrow")){
+        const btn = $("#"+jquery.id);
         
-        jquery.prop("disabled", availible);
-        if (availible) jquery.fadeTo(0, 0.8);
+        //clone the position
+        let fake = Array.from(player.position);
+        fake[0] += StringToPos[jquery.id][0];
+        fake[1] += StringToPos[jquery.id][1];
+        
+        //figure out which arrows should be enabled
+        try{
+            if (windows[fake[1]][fake[0]] != null){
+                btn.prop("disabled", false);
+                btn.fadeTo(0, 1);
+            }
+            else{
+                btn.prop("disabled", true);
+                btn.fadeTo(0, 0.7);
+            }    
+        }
+        catch{
+            btn.prop("disabled", true);
+            btn.fadeTo(0, 0.7);
+        }
     }
 }
+
+
