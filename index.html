@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="styles/positions.css"> 
         <script src="scripts/jquery.min.js"></script>
         <script src="scripts/window.js"></script>
+        <script src="scripts/grass.js"></script>
         <script src="scripts/main.js"></script>
         <script>
             $(document).ready(() => {
@@ -25,7 +26,7 @@
             <button class="arrow" id="right" onclick='SwitchWindow("right")'>→</button>
         </div>
         <div class="window" id="GrassField">
-            <canvas class="grassField"></canvas>
+            <canvas class="grassField" id="accelField"></canvas>
             <div class="upgradeBox" id="GrassUpgrades">
                 <p class="grass">Grass Upgrades</p>
                 <div class="upgradeImages grassbg" id="GrassImages">
