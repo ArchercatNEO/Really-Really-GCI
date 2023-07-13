@@ -6,13 +6,14 @@ function SwitchGrassField(): void{
         case "planetoid": {field = "planetField"; colour = "#000"}
         case "reccel": field = "reccelField";
         case "deccel": field = "deccelField";
-        default : {field = "accelField"; colour = "#456"}
+        default : {field = "accelField"; colour = "#50F000"}
     }
 
     //do I need to explain?
     const step: HTMLCanvasElement = document.getElementById(field)! as HTMLCanvasElement;
     player.field.canvas = step.getContext("2d");
-    player.field.colour = colour;
+    player.field.canvas!.fillStyle = colour;
+    player.field.canvas!.strokeStyle = "black";
 }
 
 function drawEveryGrass(amount: number){
@@ -26,20 +27,17 @@ function drawSingleGrass() {
     // Calculate the size of the square
     const randomIndex = Math.floor(Math.random() * player.field.emptySpace.length);
     
-    const gridX = player.field.emptySpace[randomIndex].x;
-    const gridY = player.field.emptySpace[randomIndex].y;
-    
+    const {x : gridX, y: gridY} = player.field.emptySpace[randomIndex]
+
     const x = gridX * player.field.grassBorder;
     const y = gridY * player.field.grassBorder;
 
     // Draw the square
-    player.field.canvas!.fillStyle = "#000";
-    player.field.canvas!.fillRect(x, y, player.field.grassBorder, player.field.grassBorder);
-
-    player.field.canvas!.fillStyle = player.field.colour;
+    player.field.canvas!.strokeRect(x, y, player.field.grassBorder, player.field.grassBorder);
     player.field.canvas!.fillRect(x, y, player.field.grassLength, player.field.grassLength);
 
     // Mark the occupied grid cells
     player.field.emptySpace.splice(randomIndex, 1);
+    player.field.grassSpace.push({x: gridX, y: gridY});
     player.field.grassCount++;
   }

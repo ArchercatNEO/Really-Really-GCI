@@ -15,6 +15,7 @@ function init() {
     }
     SwitchWindow("none");
     SwitchGrassField();
+    InitGrass();
     return;
 }
 const deltaTime = 1 / 60;
@@ -26,14 +27,15 @@ function tick() {
 let windows;
 const player = {
     field: {
-        grassLength: 5,
-        grassBorder: 7,
+        grassLength: 3,
+        grassBorder: 5,
         grassCount: 0,
-        grassCap: 300,
+        grassCap: 5000,
         canvas: null,
         colour: "#0F0",
         emptySpace: [],
-        gridSize: 20
+        grassSpace: [],
+        gridSize: 71
     },
     realm: "accel",
     range: 10,

@@ -12,12 +12,12 @@ function init(){
     for (let i = 0; i < player.field.gridSize; i++) {
         for (let j = 0; j < player.field.gridSize; j++) {
                 player.field.emptySpace.push({ x: j, y: i });
-            
         }
     }
     
     SwitchWindow("none");
     SwitchGrassField();
+    InitGrass();
     
     return;
 }
@@ -40,6 +40,7 @@ interface Player {
         canvas: CanvasRenderingContext2D | null,
         colour: string,
         emptySpace: position[],
+        grassSpace: position[],
         gridSize: number
     },
 
@@ -55,14 +56,15 @@ interface position {
 const player: Player = {
     
     field: {
-        grassLength: 5,
-        grassBorder: 7,
+        grassLength: 3,
+        grassBorder: 5,
         grassCount: 0,
-        grassCap: 300,
+        grassCap: 5000,
         canvas: null,
         colour: "#0F0",
         emptySpace: [],
-        gridSize: 20
+        grassSpace: [],
+        gridSize: 71
     },
 
     realm: "accel",
