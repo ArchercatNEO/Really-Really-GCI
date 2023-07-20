@@ -1,22 +1,34 @@
 "use strict";
-function SwitchGrassField() {
+function SwitchGrassField(realm) {
     //get which field we need to deal with
     let field, colour;
-    switch (player.realm) {
+    switch (realm) {
         case "planetoid": {
             field = "planetField";
             colour = "#000";
+            break;
         }
-        case "reccel": field = "reccelField";
-        case "deccel": field = "deccelField";
-        default: {
+        case "reccel": {
+            field = "reccelField";
+            colour = "FFFF00";
+            break;
+        }
+        case "deccel": {
+            field = "deccelField";
+            colour = "0045FF";
+            break;
+        }
+        case "accel": {
             field = "accelField";
-            colour = "#50F000";
+            colour = "#A0FF00";
+            break;
         }
+        default: throw new Error("Tried to move into the wack zone");
     }
-    //do I need to explain?
+    //get the realm's grass field and context
     const step = document.getElementById(field);
     player.field.canvas = step.getContext("2d");
+    //set grass colour
     player.field.canvas.fillStyle = colour;
     player.field.canvas.strokeStyle = "black";
 }

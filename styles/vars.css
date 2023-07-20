@@ -1,0 +1,20 @@
+:root {
+    
+    --space-size: 100px;
+    --expanded-size: calc(var(--space-size) + var(--title-size));
+    --tab-size: 5px;
+    --title-size: 20px;
+    --header-size: calc(var(--expanded-size) + 2 * var(--tab-size) + var(--title-size));
+    --header-width: 450px;
+
+    --grow-size: 10px;
+    --normal-size: calc(var(--space-size) - var(--grow-size));
+    --upgrade-size: calc(var(--expanded-size) + var(--cost-margin));
+    --cost-margin: 5px;
+
+    --margin-size: calc(var(--grow-size)/2);
+
+    --grass: rgb(0, 255, 0);
+    --prestige: rgb(2, 253, 241);
+}
+

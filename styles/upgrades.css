@@ -1,0 +1,15 @@
+div.Grass {
+    background-color: var(--grass);
+}
+
+p.Grass {
+    color: var(--grass);
+}
+
+div.Prestige {
+    background-color: var(--prestige);
+}
+
+p.Prestige {
+    color: var(--prestige);
+}

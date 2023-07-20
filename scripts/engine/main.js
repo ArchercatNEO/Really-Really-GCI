@@ -14,8 +14,9 @@ function init() {
         }
     }
     SwitchWindow("none");
-    SwitchGrassField();
+    SwitchGrassField("accel");
     InitGrass();
+    initPrestige();
     return;
 }
 const deltaTime = 1 / 60;
@@ -31,7 +32,7 @@ const player = {
         grassBorder: 5,
         grassCount: 0,
         grassCap: 5000,
-        canvas: null,
+        canvas: 69,
         colour: "#0F0",
         emptySpace: [],
         grassSpace: [],

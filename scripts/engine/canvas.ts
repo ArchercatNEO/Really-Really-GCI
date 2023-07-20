@@ -1,19 +1,22 @@
-function SwitchGrassField(): void{
+function SwitchGrassField(realm: "planetoid" | "reccel" | "deccel" | "accel"): void{
     
     //get which field we need to deal with
     let field: string, colour: string;
-    switch(player.realm){
-        case "planetoid": {field = "planetField"; colour = "#000"}
-        case "reccel": field = "reccelField";
-        case "deccel": field = "deccelField";
-        default : {field = "accelField"; colour = "#50F000"}
+    switch(realm){
+        case "planetoid": {field = "planetField"; colour = "#000"; break;}
+        case "reccel": {field = "reccelField"; colour = "FFFF00"; break;}
+        case "deccel": {field = "deccelField"; colour = "0045FF"; break;}
+        case "accel": {field = "accelField"; colour = "#A0FF00"; break;}
+        default : throw new Error("Tried to move into the wack zone");
     }
 
-    //do I need to explain?
+    //get the realm's grass field and context
     const step: HTMLCanvasElement = document.getElementById(field)! as HTMLCanvasElement;
-    player.field.canvas = step.getContext("2d");
-    player.field.canvas!.fillStyle = colour;
-    player.field.canvas!.strokeStyle = "black";
+    player.field.canvas = step.getContext("2d")!;
+    
+    //set grass colour
+    player.field.canvas.fillStyle = colour;
+    player.field.canvas.strokeStyle = "black";
 }
 
 function drawEveryGrass(amount: number){
@@ -33,8 +36,8 @@ function drawSingleGrass() {
     const y = gridY * player.field.grassBorder;
 
     // Draw the square
-    player.field.canvas!.strokeRect(x, y, player.field.grassBorder, player.field.grassBorder);
-    player.field.canvas!.fillRect(x, y, player.field.grassLength, player.field.grassLength);
+    player.field.canvas.strokeRect(x, y, player.field.grassBorder, player.field.grassBorder);
+    player.field.canvas.fillRect(x, y, player.field.grassLength, player.field.grassLength);
 
     // Mark the occupied grid cells
     player.field.emptySpace.splice(randomIndex, 1);

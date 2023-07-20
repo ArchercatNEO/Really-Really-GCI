@@ -16,8 +16,9 @@ function init(){
     }
     
     SwitchWindow("none");
-    SwitchGrassField();
+    SwitchGrassField("accel");
     InitGrass();
+    initPrestige();
     
     return;
 }
@@ -37,14 +38,14 @@ interface Player {
         grassBorder: number,
         grassCount: number,
         grassCap: number,
-        canvas: CanvasRenderingContext2D | null,
+        canvas: CanvasRenderingContext2D,
         colour: string,
         emptySpace: position[],
         grassSpace: position[],
         gridSize: number
     },
 
-    realm: string
+    realm: "planetoid" | "reccel" | "deccel" | "accel",
     range: number,
     growSpeed: number
     position: number[]
@@ -60,7 +61,7 @@ const player: Player = {
         grassBorder: 5,
         grassCount: 0,
         grassCap: 5000,
-        canvas: null,
+        canvas: 69 as unknown as CanvasRenderingContext2D,
         colour: "#0F0",
         emptySpace: [],
         grassSpace: [],
