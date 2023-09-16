@@ -1,45 +1,44 @@
-import type { Upgrade } from "../engine/upgrade";
+import type { Upgrade } from '../engine/upgrade'
 
-export const GrassUpgrades: Upgrade[] =
-[
+export const GrassUpgrades: Upgrade[] = [
     {
-        description: "WEeeee", 
-        cost(level) {
+        description: 'WEeeee',
+        cost() {
             return 0
         },
-        bg: "images/Bases/AutoBase.png",
-        icon: "images/Curr/Astrolabe.png"
+        bg: 'images/Bases/AutoBase.png',
+        icon: 'images/Curr/Astrolabe.png'
     },
     {
-        description: "WEewooe", 
+        description: 'WEewooe',
         cost(level) {
             return 10
         },
-        bg: "images/Bases/AstroBase.png",
-        icon: "images/Curr/Charge.png"
+        bg: 'images/Bases/AstroBase.png',
+        icon: 'images/Curr/Charge.png'
     },
     {
-        description: "hi", 
+        description: 'hi',
         cost(level) {
             return 20
         },
-        bg: "images/Bases/AstroBase.png",
-        icon: "images/Curr/Cloud.png"
+        bg: 'images/Bases/AstroBase.png',
+        icon: 'images/Curr/Cloud.png'
     },
     {
-        description: "tftft", 
+        description: 'tftft',
         cost(level) {
             return 30
         },
-        bg: "images/Bases/AstroBase.png",
-        icon: "images/Curr/Fun.png"
+        bg: 'images/Bases/AstroBase.png',
+        icon: 'images/Curr/Fun.png'
     },
     {
-        description: "gddhgt", 
+        description: 'gddhgt',
         cost(level) {
             return 40
         },
-        bg: "images/Bases/AstroBase.png",
-        icon: "images/Curr/Astrolabe.png"
+        bg: 'images/Bases/AstroBase.png',
+        icon: 'images/Curr/Astrolabe.png'
     }
-];
+]

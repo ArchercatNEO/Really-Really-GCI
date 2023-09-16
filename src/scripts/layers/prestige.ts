@@ -1,5 +1,5 @@
 import { map } from '../map'
 
 function initPrestige() {
-  NewUpgradeDiv($('#GrassField'), 'Prestige', 'Prestige', [['Grass'], ['Prestige']])
+    NewUpgradeDiv($('#GrassField'), 'Prestige', 'Prestige', [['Grass'], ['Prestige']])
 }

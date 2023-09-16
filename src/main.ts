@@ -7,7 +7,7 @@ import App from './App.vue'
 
 // eslint-disable-next-line prefer-const
 export let player = reactive({
-  position: [0, 0]
+    position: [0, 0]
 })
 
 createApp(App).mount('#app')

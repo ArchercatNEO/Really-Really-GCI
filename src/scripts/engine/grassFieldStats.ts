@@ -1,15 +1,11 @@
-export const fieldStats = 
-{
-    growSpeed() 
-    {
-        return 1;
+export const fieldStats = {
+    growSpeed() {
+        return 1
     },
-    grassCap()
-    {
+    grassCap() {
         return 500
     },
-    cutterLength()
-    {
+    cutterLength() {
         return 20
-    },
+    }
 }

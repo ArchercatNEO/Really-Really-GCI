@@ -1,10 +1,10 @@
 .window {
-  background-color: rgb(34, 105, 186);
-  width: 80%;
-  height: 75%;
-  position: absolute;
-  top: calc(25% / 2);
-  left: 10%;
-  border-width: 2px;
-  border-color: black;
+    background-color: rgb(34, 105, 186);
+    width: 80%;
+    height: 75%;
+    position: absolute;
+    top: calc(25% / 2);
+    left: 10%;
+    border-width: 2px;
+    border-color: black;
 }
