@@ -5,7 +5,7 @@ export interface Upgrade {
     icon: string
 }
 
-abstract class UpgradeLayer {
+/*abstract class UpgradeLayer {
     isFree = false
     abstract resource: Resource
 
@@ -77,3 +77,4 @@ class Upgradey {
         this.layers = data.layers
     }
 }
+*/

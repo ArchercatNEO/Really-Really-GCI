@@ -1,4 +1,4 @@
-function init() {
+/*function init() {
     windows = [
         [$('#Achievements'), $('#Settings')],
         [$('#City'), $('#GrassField')],
@@ -69,3 +69,4 @@ const player: Player = {
     growSpeed: 1,
     position: [1, 1]
 }
+*/

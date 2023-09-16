@@ -1,4 +1,4 @@
-type Button = JQuery<HTMLButtonElement>
+/*type Button = JQuery<HTMLButtonElement>
 type text = JQuery<HTMLParagraphElement>
 type Div = JQuery<HTMLDivElement>
 
@@ -95,3 +95,4 @@ function CloseUpgrade(data: any) {
     parent.children('p').hide()
     parent.children('button').hide()
 }
+*/
