@@ -1,0 +1,27 @@
+:root {
+  --o-upgrade-image-size: 100px;
+  --o-upgrade-image-expansion-size: 10px;
+  --o-expanded-upgrade-image-size: calc(
+    var(--o-upgrade-image-size) + var(--o-upgrade-image-expansion-size)
+  );
+
+  --o-upgrade-grid-width: calc(var(--o-upgrade-image-size) * 5 + 10px);
+  --o-upgrade-grid-height: var(var(--o-upgrade-image-size));
+
+  --space-size: 100px;
+  --expanded-size: calc(var(--space-size) + var(--title-size));
+  --tab-size: 5px;
+  --title-size: 20px;
+  --header-size: calc(var(--expanded-size) + 2 * var(--tab-size) + var(--title-size));
+  --header-width: 450px;
+
+  --grow-size: 10px;
+  --normal-size: calc(var(--space-size) - var(--grow-size));
+  --upgrade-size: calc(var(--expanded-size) + var(--cost-margin));
+  --cost-margin: 5px;
+
+  --margin-size: calc(var(--grow-size) / 2);
+
+  --grass: rgb(0, 255, 0);
+  --prestige: rgb(2, 253, 241);
+}

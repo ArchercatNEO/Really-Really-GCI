@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <link rel="stylesheet" href="styles/classes.css"> 
+        <link rel="stylesheet" href="styles/positions.css"> 
+        <link rel="stylesheet" href="styles/upgrades.css"> 
+        <link rel="stylesheet" href="styles/boxes.css"> 
+        <link rel="stylesheet" href="styles/vars.css"> 
+        <script src="scripts/jquery.min.js"></script>
+        <script src="scripts/engine/window.js"></script>
+        <script src="scripts/engine/canvas.js"></script>
+        <script src="scripts/engine/upgrade.js"></script>
+        <script src="scripts/engine/main.js"></script>
+        <script src="scripts/layers/gras.js"></script>
+        <script src="scripts/layers/prestige.js"></script>
+        <script>
+            $(document).ready(() => {
+                
+                init();
+                setInterval(tick, 1000/60) //60fps
+            })
+        </script>
+
+    </head>
+
+    <body class="body">
+
+        <div class="window" id="GrassField">
+            <canvas class="grassField" id="accelField"  width="355px" height="355px"></canvas>
+        </div>
+        <div class="window" id="Achievements">
+
+        </div>
+        <div class="window" id="Settings">
+
+        </div>
+        <div class="window" id="City">
+
+        </div>
+        <div class="window" id="Time">
+
+        </div>
+        <div class="window" id="Automation">
+
+        </div>
+    </body>
+
+</html>
+

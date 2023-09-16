@@ -1,55 +1,18 @@
 <!DOCTYPE html>
-<html>
-    
-    <head>
-        <link rel="stylesheet" href="styles/classes.css"> 
-        <link rel="stylesheet" href="styles/positions.css"> 
-        <link rel="stylesheet" href="styles/upgrades.css"> 
-        <link rel="stylesheet" href="styles/boxes.css"> 
-        <link rel="stylesheet" href="styles/vars.css"> 
-        <script src="scripts/jquery.min.js"></script>
-        <script src="scripts/engine/window.js"></script>
-        <script src="scripts/engine/canvas.js"></script>
-        <script src="scripts/engine/upgrade.js"></script>
-        <script src="scripts/engine/main.js"></script>
-        <script src="scripts/layers/gras.js"></script>
-        <script src="scripts/layers/prestige.js"></script>
-        <script>
-            $(document).ready(() => {
-                
-                init();
-                setInterval(tick, 1000/60) //60fps
-            })
-        </script>
-
-    </head>
-
-    <body class="body">
-        <div id="ui">
-            <button class="arrow" id="left" onclick='SwitchWindow("left")'>←</button>
-            <button class="arrow" id="up" onclick='SwitchWindow("up")'>↑</button>
-            <button class="arrow" id="down" onclick='SwitchWindow("down")'>↓</button>
-            <button class="arrow" id="right" onclick='SwitchWindow("right")'>→</button>
-        </div>
-        <div class="window" id="GrassField">
-            <canvas class="grassField" id="accelField"  width="355px" height="355px"></canvas>
-        </div>
-        <div class="window" id="Achievements">
-
-        </div>
-        <div class="window" id="Settings">
-
-        </div>
-        <div class="window" id="City">
-
-        </div>
-        <div class="window" id="Time">
-
-        </div>
-        <div class="window" id="Automation">
-
-        </div>
-    </body>
-
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <link rel="stylesheet" type="text/css" src="/styles/boxes.css">
+    <link rel="stylesheet" type="text/css" src="/styles/classes.css">
+    <link rel="stylesheet" type="text/css" src="/styles/positions.css">
+    <link rel="stylesheet" type="text/css" src="/styles/upgrades.css">
+    <link rel="stylesheet" type="text/css" src="/styles/vars.css">
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>
-

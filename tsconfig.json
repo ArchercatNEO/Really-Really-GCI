@@ -1,9 +1,15 @@
 {
-    "compilerOptions": {
-        "target": "ES6",
-        "lib": ["DOM", "ES2023", "ESNext"],
-        "strict": true
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
     },
-    
-    "include": ["scripts/**/*"],
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ],
+  "compilerOptions": {
+    "noEmit": true,
+    "allowImportingTsExtensions": true
+  }
 }
