@@ -1,8 +1,45 @@
+import Decimal from 'break_infinity.js'
+
 export interface Upgrade {
+    description: string
+    level: number
+    cost: (level: number) => number
+    effect: (level: number) => number
+    bg: string
+    icon: string
+    config: UpgradeData
+}
+
+export interface UpgradeData {
+    description: string
+    cost: (level: number) => number
+    currency: () => Decimal | number
+    bg: string
+    icon: string
+}
+
+export class Upgrade implements Upgrade {
     description: string
     cost: (level: number) => number
     bg: string
     icon: string
+    config: UpgradeData
+
+    constructor(data: UpgradeData) {
+        this.description = data.description
+        this.cost = data.cost
+        this.bg = data.bg
+        this.icon = data.icon
+        this.config = data
+    }
+
+    get isAffordable(): boolean {
+        return new Decimal(this.currency).gte(this.cost(56))
+    }
+
+    get currency(): number | Decimal {
+        return this.config.currency()
+    }
 }
 
 /*abstract class UpgradeLayer {

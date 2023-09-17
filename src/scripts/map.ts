@@ -1,3 +1,4 @@
-import UpgradeGridVue from '@/components/UpgradeComponents/UpgradeGrid.vue'
+import FieldWindow from '@/components/Tabs/FieldWindow.vue'
+import CityWindow from '@/components/Tabs/CityWindow.vue'
 
-export const map = [[UpgradeGridVue], [UpgradeGridVue]]
+export const map = [[CityWindow, FieldWindow], [FieldWindow]]

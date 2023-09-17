@@ -1,22 +1,11 @@
 <script setup lang="ts">
-import { player } from '@/main'
 import { GrassUpgrades } from '@/scripts/layers/test'
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import UpgradeCircle from './UpgradeCircle.vue'
 import UpgradeButtonDiv from './UpgradeBtns.vue'
 
-const props = defineProps<{
-    position: Array<number>
-}>()
-
 const descriptionOpen = ref(false)
 const upgradeDescription = ref('')
-
-const isVisible = computed(() => {
-    const [x, y] = props.position
-    const [pX, pY] = player.position
-    return x === pX && y === pY
-})
 
 function OpenUpgrade(description: string) {
     upgradeDescription.value = description
@@ -29,7 +18,7 @@ function CloseUpgrade() {
 </script>
 
 <template>
-    <div v-if="isVisible" class="UpgradeHeader">
+    <div class="UpgradeHeader">
         <p class="UpgradeTitle">Grass Upgrades</p>
         <div v-if="!descriptionOpen" class="UpgradeSpace red">
             <UpgradeCircle

@@ -9,7 +9,7 @@ export default defineConfig({
   base: '/Really-Really-GCI/',
   plugins: [
     vue(),
-    vueJsx(),
+    vueJsx()
   ],
   resolve: {
     alias: {

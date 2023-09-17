@@ -1,27 +1,33 @@
 <script setup lang="ts">
 import type { Upgrade } from '@/scripts/engine/upgrade'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, reactive } from 'vue'
 
 const props = defineProps<{ upgrade: Upgrade }>()
-const upgrade = computed(() => props.upgrade)
+const upgrade = reactive(props.upgrade)
 
 const icon = ref<HTMLImageElement | null>(null)
 const base = ref<HTMLImageElement | null>(null)
 
+const computedClass = computed(() => {
+    return {
+        cheap: upgrade.isAffordable,
+        expensive: !upgrade.isAffordable
+    }
+})
+
 onMounted(() => {
-    console.log(upgrade.value.icon)
-    icon.value!.src = upgrade.value.icon
-    base.value!.src = upgrade.value.bg
+    icon.value!.src = upgrade.icon
+    base.value!.src = upgrade.bg
 })
 </script>
 
 <template>
-    <div class="upgrade">
+    <div class="upgrade" :refresh="0">
         <div class="upgradeImage">
             <img ref="icon" class="icon" @click="$emit('clicked', upgrade.description)" />
             <img ref="base" class="base" />
         </div>
-        <p class="cost">Cost: {{ upgrade.cost(78) }}</p>
+        <p :class="computedClass">Cost: {{ upgrade.cost(78) }}</p>
     </div>
 </template>
 
@@ -58,7 +64,11 @@ onMounted(() => {
     text-align: center;
 }
 
-.cost {
-    color: red;
+.cheap {
+    color: green; /* Define styles for the "cheap" class */
+}
+
+.expensive {
+    color: red; /* Define styles for the "expensive" class */
 }
 </style>

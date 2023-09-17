@@ -1,16 +1,19 @@
 <script setup lang="ts">
-import UpgradeGrid from './components/UpgradeComponents/UpgradeGrid.vue'
-import GrassCanvas from './components/GrassCanvas.vue'
+import player from '@/player'
+import { map } from './scripts/map'
+import { computed } from 'vue'
+import HeaderDiv from './components/NavDiv/HeaderDiv.vue'
 import NavDiv from './components/NavDiv/NavDiv.vue'
+
+const x = computed(() => player.position[0])
+const y = computed(() => player.position[1])
 </script>
 
 <template>
     <header></header>
-
     <main>
-        <UpgradeGrid :position="[0, 0]" />
-        <UpgradeGrid :position="[0, 1]" />
-        <GrassCanvas />
+        <HeaderDiv />
+        <component :is="map[y][x]" />
         <NavDiv />
     </main>
 </template>

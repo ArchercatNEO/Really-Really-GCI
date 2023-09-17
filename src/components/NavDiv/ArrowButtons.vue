@@ -1,22 +1,17 @@
-<script lang="ts">
-import { player } from '@/main'
+<script setup lang="ts">
+import player from '@/player'
 import { map } from '@/scripts/map'
 
-export default {
-    name: 'ArrowDiv',
-    methods: {
-        SwitchWindow(x: number, y: number) {
-            const dX = player.position[0] + x
-            const dY = player.position[1] - y
-            player.position = [dX, dY]
-        },
+function SwitchWindow(x: number, y: number) {
+    const dX = player.position[0] + x
+    const dY = player.position[1] + y
+    player.position = [dX, dY]
+}
 
-        isIlegal(x: number, y: number): boolean {
-            const dX = player.position[0] + x
-            const dY = player.position[1] - y
-            return map[dY]?.[dX] === undefined
-        }
-    }
+function isIlegal(x: number, y: number): boolean {
+    const dX = player.position[0] + x
+    const dY = player.position[1] + y
+    return map[dY]?.[dX] === undefined
 }
 </script>
 

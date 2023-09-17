@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { fieldStats } from '@/scripts/engine/grassFieldStats'
+import { GainGrass } from '@/scripts/layers/grass'
 
 const canvas = ref<HTMLCanvasElement | null>(null)
 const context = ref<CanvasRenderingContext2D | null>(null)
@@ -83,7 +84,10 @@ function growOneGrass(cutterX: number, cutterY: number) {
         // Draw it
         grass.value.push(cube)
         context.value.fillRect(cube.x, cube.y, 20, 20) // Adjust mole size as needed
+        return
     }
+
+    GainGrass()
 }
 
 function cutGrass() {
@@ -102,7 +106,7 @@ function cutGrass() {
             )
         ) {
             grass.value.splice(grass.value.indexOf(cube), 1)
-            console.log('ftft')
+            GainGrass()
         }
     }
 }
@@ -144,7 +148,7 @@ function OnMouseBorder(active: boolean) {
 .GrassField {
     position: absolute;
     left: 5%;
-    top: 25%;
+    top: 40%;
     background-color: rgb(150, 255, 40);
     border-color: black;
     border-width: 1px;

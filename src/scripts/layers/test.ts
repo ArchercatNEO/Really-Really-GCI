@@ -1,13 +1,16 @@
-import type { Upgrade } from '../engine/upgrade'
+import { Upgrade } from '../engine/upgrade'
+import type { UpgradeData } from '../engine/upgrade'
+import player from '@/player'
 
-export const GrassUpgrades: Upgrade[] = [
+const GrassUpgradeData: UpgradeData[] = [
     {
         description: 'WEeeee',
         cost() {
             return 0
         },
         bg: 'images/Bases/AutoBase.png',
-        icon: 'images/Curr/Astrolabe.png'
+        icon: 'images/Curr/Astrolabe.png',
+        currency: () => player.grass
     },
     {
         description: 'WEewooe',
@@ -15,7 +18,8 @@ export const GrassUpgrades: Upgrade[] = [
             return 10
         },
         bg: 'images/Bases/AstroBase.png',
-        icon: 'images/Curr/Charge.png'
+        icon: 'images/Curr/Charge.png',
+        currency: () => player.grass
     },
     {
         description: 'hi',
@@ -23,7 +27,8 @@ export const GrassUpgrades: Upgrade[] = [
             return 20
         },
         bg: 'images/Bases/AstroBase.png',
-        icon: 'images/Curr/Cloud.png'
+        icon: 'images/Curr/Cloud.png',
+        currency: () => player.grass
     },
     {
         description: 'tftft',
@@ -31,7 +36,8 @@ export const GrassUpgrades: Upgrade[] = [
             return 30
         },
         bg: 'images/Bases/AstroBase.png',
-        icon: 'images/Curr/Fun.png'
+        icon: 'images/Curr/Fun.png',
+        currency: () => player.grass
     },
     {
         description: 'gddhgt',
@@ -39,6 +45,9 @@ export const GrassUpgrades: Upgrade[] = [
             return 40
         },
         bg: 'images/Bases/AstroBase.png',
-        icon: 'images/Curr/Astrolabe.png'
+        icon: 'images/Curr/Astrolabe.png',
+        currency: () => player.grass
     }
 ]
+
+export const GrassUpgrades = GrassUpgradeData.map((e) => new Upgrade(e))
