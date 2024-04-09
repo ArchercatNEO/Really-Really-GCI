@@ -4,6 +4,7 @@ import player from "@/player";
 import type { Currency } from "@/common/Currency";
 import { Upgrade } from "@/common/Upgrade/Upgrade";
 import type { GrassCube, GrassField } from "./GrassField";
+import { Vector2 } from "./Cursor";
 
 class NormalGrass implements Currency {
     get amount(): Decimal {
@@ -57,12 +58,11 @@ export class NormalGrassUpgrade extends Upgrade {
 }
 
 export class NormalGrassCube implements GrassCube {
-    posX: number;
-    posY: number;
+    position: Vector2;
+    size: number = 20;
 
-    public constructor(posX: number, posY: number) {
-        this.posX = posX;
-        this.posY = posY;
+    public constructor(position: Vector2) {
+        this.position = position;
     }
 
     collectGrass(): void {
@@ -86,6 +86,6 @@ export class NormalGrassField implements GrassField {
     spawnGrass(canvas: HTMLCanvasElement): GrassCube {
         const posX = Math.random() * canvas.width;
         const posY = Math.random() * canvas.height;
-        return new NormalGrassCube(posX, posY);
+        return new NormalGrassCube(new Vector2(posX, posY));
     }
 }

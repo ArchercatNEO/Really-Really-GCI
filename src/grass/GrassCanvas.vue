@@ -1,88 +1,73 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import type { GrassCube, GrassField } from "@/grass/GrassField";
+import { Cursor } from "./Cursor";
 
-const props = defineProps<{
+const { grassField } = defineProps<{
     grassField: GrassField;
 }>();
 
-const { grassField } = props;
+const canvas = ref<HTMLCanvasElement | null>(null);
 
-let canvas: HTMLCanvasElement | null = null;
-let context: CanvasRenderingContext2D | null = null;
-
-let cap = 0;
+const cutter = ref<Cursor>(new Cursor());
 const grass: GrassCube[] = [];
-const cutter = ref<{ x: number; y: number; active: boolean }>({
-    x: 0,
-    y: 0,
-    active: false
-});
+let cap = 0;
 
 onMounted(() => {
-    canvas = document.querySelector("canvas")!;
-    context = canvas?.getContext("2d");
+    if (canvas.value === null) {
+        throw new Error("Grass Field could not find a canvas");
+    }
 
     setInterval(update, 1000 / 60, 1000 / 60);
 });
 
 /** Grow grass until either grass cap or grow speed limit is reached */
 function update(delta: number) {
-    //Guard clauses
-    //TODO do nullability better
-    if (canvas === null) {
-        return;
-    }
-    if (context === null) {
+    if (canvas.value === null) {
         return;
     }
 
-    const { x: cutterX, y: cutterY } = cutter.value;
+    const context = canvas.value.getContext("2d");
+    if (context === null) {
+        return;
+    }
 
     const speedCap = grassField.growSpeed() * delta;
     const grassCap = grassField.grassCap() - grass.length;
 
     for (cap += Math.min(speedCap, grassCap); cap > 0; cap--) {
-        const cube = grassField.spawnGrass(canvas);
+        const cube = grassField.spawnGrass(canvas.value);
 
         //If the cutter and cube are colliding
-        if (
-            cutterX + grassField.cutterLength() / 2 <= cube.posX ||
-            cutterX - grassField.cutterLength() / 2 >= cube.posY + 20 ||
-            cutterY + grassField.cutterLength() / 2 <= cube.posX ||
-            cutterY - grassField.cutterLength() / 2 >= cube.posY + 20
-        ) {
+        if (cutter.value.isColliding(grassField.cutterLength(), cube)) {
+            cube.collectGrass();
+        } else {
             grass.push(cube);
             context.fillStyle = "green";
-            context.fillRect(cube.posX, cube.posY, 20, 20);
-        } else {
-            cube.collectGrass();
+            context.fillRect(cube.position.x, cube.position.y, 20, 20);
         }
     }
 }
 
 function moveCutter(event: MouseEvent) {
-    if (!canvas) return;
-    if (!context) return;
-    if (!cutter.value) return;
+    if (cutter.value === null) { return; }
+    if (canvas.value === null) { return; }
+
+    const context = canvas.value.getContext("2d");
+    if (context === null) {
+        return;
+    }
 
     // Get mouse coordinates
     const mouseX = event.offsetX;
     const mouseY = event.offsetY;
 
-    cutter.value.x = mouseX;
-    cutter.value.y = mouseY;
+    cutter.value.position.x = mouseX;
+    cutter.value.position.y = mouseY;
 
     // Check if mouse is over a visible grass cube
     for (const cube of grass) {
-        if (
-            !(
-                mouseX + grassField.cutterLength() / 2 <= cube.posX ||
-                mouseX - grassField.cutterLength() / 2 >= cube.posX + 20 ||
-                mouseY + grassField.cutterLength() / 2 <= cube.posY ||
-                mouseY - grassField.cutterLength() / 2 >= cube.posY + 20
-            )
-        ) {
+        if (cutter.value.isColliding(grassField.cutterLength(), cube)) {
             const cutGrassIdx = grass.indexOf(cube);
             grass[cutGrassIdx].collectGrass();
             grass.splice(cutGrassIdx, 1);
@@ -90,11 +75,11 @@ function moveCutter(event: MouseEvent) {
     }
 
     // Clear the canvas
-    context.clearRect(0, 0, canvas!.width, canvas!.height);
+    context.clearRect(0, 0, canvas.value.width, canvas.value.height);
 
     for (const cube of grass) {
         context.fillStyle = "green";
-        context.fillRect(cube.posX, cube.posY, 20, 20);
+        context.fillRect(cube.position.x, cube.position.y, 20, 20);
     }
 
     if (cutter.value?.active) {

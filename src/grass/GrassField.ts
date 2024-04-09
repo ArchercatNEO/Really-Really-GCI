@@ -1,6 +1,9 @@
+import type { Vector2 } from "./Cursor";
+
 export interface GrassCube {
-    posX: number;
-    posY: number;
+    position: Vector2;
+    size: number;
+    
     collectGrass(): void;
 }
 
