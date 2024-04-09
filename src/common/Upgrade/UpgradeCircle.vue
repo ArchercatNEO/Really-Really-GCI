@@ -1,44 +1,51 @@
 <script setup lang="ts">
-import type { Upgrade } from '@/scripts/engine/upgrade'
-import { computed, onMounted, ref, reactive } from 'vue'
+import { computed, onMounted, ref, reactive } from "vue";
 
-const props = defineProps<{ upgrade: Upgrade }>()
-const upgrade = reactive(props.upgrade)
+import { format } from "@/common/notations";
+import type { Upgrade } from "./Upgrade";
 
-const icon = ref<HTMLImageElement | null>(null)
-const base = ref<HTMLImageElement | null>(null)
+const props = defineProps<{ upgrade: Upgrade }>();
+const upgrade = reactive(props.upgrade);
+
+defineEmits<{
+    clicked: [upgrade: Upgrade];
+}>();
+
+const icon = ref<HTMLImageElement>();
+const base = ref<HTMLImageElement>();
 
 const computedClass = computed(() => {
     return {
-        cheap: upgrade.isAffordable,
-        expensive: !upgrade.isAffordable
-    }
-})
+        cheap: upgrade.nextCost() <= upgrade.currency.amount,
+        expensive: upgrade.nextCost() > upgrade.currency.amount
+    };
+});
 
 onMounted(() => {
-    icon.value!.src = upgrade.icon
-    base.value!.src = upgrade.bg
-})
+    icon.value!.src = upgrade.icon();
+    base.value!.src = upgrade.background();
+});
 </script>
 
 <template>
     <div class="upgrade" :refresh="0">
         <div class="upgradeImage">
-            <img ref="icon" class="icon" @click="$emit('clicked', upgrade.description)" />
+            <img ref="icon" class="icon" @click="$emit('clicked', upgrade)" />
             <img ref="base" class="base" />
         </div>
-        <p :class="computedClass">Cost: {{ upgrade.cost(78) }}</p>
+        <p :class="computedClass">Cost: {{ format(upgrade.nextCost(), 2, 0) }}</p>
     </div>
 </template>
 
 <style scoped>
+.icon {
+    z-index: 10;
+}
+
 .base {
     z-index: 0;
 }
 
-.icon {
-    z-index: 10;
-}
 .upgradeImage {
     width: 100px; /* Set the width of the container div */
     height: 100px;

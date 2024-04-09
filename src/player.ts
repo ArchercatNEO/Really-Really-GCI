@@ -1,7 +1,14 @@
-import { reactive } from 'vue'
-import Decimal from 'break_infinity.js'
+import { reactive } from "vue";
+import Decimal from "break_infinity.js";
 
-export default reactive({
-    grass: new Decimal(0),
-    position: [0, 0]
-})
+class Player {
+    //Other information
+    position: [number, number] = [0, 0];
+
+    //Grass things
+    grass: Decimal = new Decimal(0);
+    grassUpgrades: number[] = [];
+}
+
+const player = reactive(new Player());
+export { player as default };
